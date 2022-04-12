@@ -1,0 +1,26 @@
+
+{% extends "encyclopedia/layout.html" %}
+{%load static%}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'encyclopedia/newEntry.css' %}">
+{% endblock %}
+{% block title %}
+    Encyclopedia
+{% endblock %}
+{% block body %}
+{% if update %}
+    <h1> Editing {{title}} </h1>
+{% else %}
+    <h1 id="new_entry_h1"> Add/Create a new entry below </h1>
+{% endif %}
+    
+    <!-- Specifies where to send the form-data when a form is submitted-->
+    <form action="{% url 'wiki:newEntry' %}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <!-- <input type=hidden >  -->
+        <input type="submit">
+    </form>
+
+
+{% endblock %}

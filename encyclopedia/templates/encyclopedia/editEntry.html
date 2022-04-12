@@ -1,0 +1,23 @@
+
+{% extends "encyclopedia/layout.html" %}
+{%load static%}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'encyclopedia/newEntry.css' %}">
+{% endblock %}
+{% block title %}
+    Encyclopedia
+{% endblock %}
+{% block body %}
+    <h1 id="edit_entry_h1"> Editing the Entry {{title}} </h1>
+    
+    <!-- Specifies where to send the form-data when a form is submitted-->
+    <!-- <form action="{% url 'wiki:newEntry' %}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit"> -->
+
+        <a href=""> Save </a>
+    </form>
+
+
+{% endblock %}

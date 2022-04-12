@@ -1,0 +1,39 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block body %}
+
+{% if recommendEntries %}
+    <h1> You searched for: {{title}} </h1>
+    <p> Did you mean one of the following results? </p>
+    <ul>
+        {% for pe in possibleEntries %}
+            <li> <a href="{{pe}}"> {{pe}} </a> </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <!-- Entry is valid and we display its title as well as its content -->
+    <!-- Here, we also display the edit link that takes the user to the editEntry path -->
+    <h1> {{title}}</h1>
+  
+     <p>   {{content}}  </p>
+     
+     <form action="{% url 'wiki:editEntry' %}" method="POST">
+        {% csrf_token %}
+        <!-- <a href="editEntry">  Edit </a> -->
+        <input type=hidden name="title" value="{{title}}"> 
+        <input type=hidden name="content" value="{{content}}"> 
+        <!-- <a href="{% url 'wiki:editEntry' %}">Edit</a> -->
+        <button type="submit" class="btn btn-secondary">Edit</button>
+     </form>
+     
+{% endif %}
+    
+
+   
+
+
+{% endblock %}
